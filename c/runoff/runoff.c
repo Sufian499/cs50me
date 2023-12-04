@@ -170,7 +170,6 @@ bool print_winner(void)
     {
         if (candidates[i].votes > win_result)
         {
-            printf("\n%s\n", candidates[i].name);
             return true;
         }
     }
@@ -215,7 +214,7 @@ bool is_tie(int min)
     int c = 0;
     for (int i = 0; i < candidate_count; i++)
     {
-        if (min == candidates[i].votes  && candidates[i].eliminated == false)
+        if (min == candidates[i].votes && candidates[i].eliminated == false)
         {
             c = c + 1;
         }
