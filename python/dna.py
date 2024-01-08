@@ -12,18 +12,26 @@ def main():
     csv_file = sys.argv[1]  # Filename
     STRs = list()  # Lista con los headers
     rows = []  # lista con un diccionario basado en el csv
-    with open(csv_file, "r") as database:
-        reader = csv.DictReader(database)
-        for row in reader.fieldnames:
-            STRs.append(row)
-        for row in reader:
-            rows.append(row)
+    try:
+        with open(csv_file, "r") as database:
+            reader = csv.DictReader(database)
+            for row in reader.fieldnames:
+                STRs.append(row)
+            for row in reader:
+                rows.append(row)
+    except FileNotFoundError:
+        print("File not found")
+        return
 
     # TODO: Read DNA sequence file into a variable
     txt_file = sys.argv[2]  # Filename
     dna_sequence = ""  # String to store the sequence
-    with open(txt_file, "r") as sequence:
-        dna_sequence = sequence.read()
+    try:
+        with open(txt_file, "r") as sequence:
+            dna_sequence = sequence.read()
+    except FileNotFoundError:
+        print("File not found")
+        return
 
     # TODO: Find longest match of each STR in DNA sequence
     matches = dict()
